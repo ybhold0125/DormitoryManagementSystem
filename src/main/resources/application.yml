@@ -1,0 +1,11 @@
+server:
+  port: 8080
+spring:  profiles:    active:    - jdbc
+mybatis:
+  configuration:
+            # 开启驼峰命名匹配映射
+    map-underscore-to-camel-case: true
+    #配置Mybatis的XML映射文件路径
+  mapper-locations: classpath:mapper/*.xml
+  #配置XML映射文件中指定的实体类别名路径
+  type-aliases-package: com.example.model.domain  
