@@ -8,7 +8,7 @@ import org.apache.ibatis.annotations.Select;
 import dms.boot.student.domain.Student;
 
 @Mapper
-public interface IStudentMapper {
+public interface IStudentDao {
 	@Select("SELECT * FROM student")
 	public List<Student> queryStudentList();
 }
