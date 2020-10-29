@@ -18,4 +18,11 @@ public class UserServiceImpl implements IUserService {
 		return iUserDao.queryUserById(userId);
 	}
 
+	@Override
+	public User queryUserByUsername(String username) {
+		return iUserDao.queryUserByUsername(username);
+	}
+	
+	
+
 }

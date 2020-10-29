@@ -45,7 +45,7 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
 				try {
 					userId = JWT.decode(token).getAudience().get(0);
 				} catch (Exception e) {
-					throw new RuntimeException("401");
+					throw new RuntimeException("401 1");
 				}
 				User user = iUserService.queryUserByUserId(userId);
 				if(user == null) {
@@ -57,7 +57,7 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
 				try {
 					jwtVerifier.verify(token);
 				} catch (Exception e) {
-					throw new RuntimeException("401");
+					throw new RuntimeException("401 2");
 				}
 				return true;
 			}

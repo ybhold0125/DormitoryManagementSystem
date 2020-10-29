@@ -1,14 +1,19 @@
 package dms.boot.user.domain;
 
 public class User {
-    private String Id;
+    private String userId;
     private String username;
     private String password;
-	public String getId() {
-		return Id;
+    
+	@Override
+	public String toString() {
+		return "User [userId=" + userId + ", username=" + username + ", password=" + password + "]";
 	}
-	public void setId(String id) {
-		Id = id;
+	public String getUserId() {
+		return userId;
+	}
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
 	public String getUsername() {
 		return username;
@@ -22,10 +27,6 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	@Override
-	public String toString() {
-		return "User [Id=" + Id + ", username=" + username + ", password=" + password + "]";
-	}
-    
+
     
 }

@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import dms.boot.annotation.JwtToken;
 import dms.boot.student.domain.Student;
 import dms.boot.student.service.IStudentSerivce;
 
@@ -18,6 +19,7 @@ public class StudentController {
 	@Autowired
 	private IStudentSerivce iStudentSerivce;
 	
+	@JwtToken
 	@GetMapping("/queryStudentList")
 	public Map<String, Object> queryStudentList() {
 		Map<String, Object> map = new HashMap<String, Object>();
