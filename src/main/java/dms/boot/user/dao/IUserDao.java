@@ -1,5 +1,6 @@
 package dms.boot.user.dao;
 
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
@@ -24,4 +25,12 @@ public interface IUserDao {
 	 */
 	@Select("SELECT * FROM user WHERE username=#{username}")
 	public User queryUserByUsername(String username);
+	
+	/**
+	 * 	插入用户
+	 * @param user
+	 * @return
+	 */
+	@Insert("INSERT INTO user(userId, username, password) VALUES(null, #{username}, #{password})")
+	public int insertUser(User user);
 }

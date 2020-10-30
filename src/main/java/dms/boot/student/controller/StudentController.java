@@ -6,6 +6,8 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -25,6 +27,13 @@ public class StudentController {
 		Map<String, Object> map = new HashMap<String, Object>();
 		List<Student> studentList = iStudentSerivce.queryStudentList();
 		map.put("data", studentList);
+		return map;
+	}
+	
+	@JwtToken
+	@PostMapping("/insertStudent")
+	public Map<String, Object> insertStudent(@RequestBody Student student) {
+		Map<String, Object> map = iStudentSerivce.insertStudent(student);
 		return map;
 	}
 }
