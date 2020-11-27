@@ -16,7 +16,7 @@ import com.auth0.jwt.algorithms.Algorithm;
 
 import dms.boot.annotation.JwtToken;
 import dms.boot.user.domain.User;
-import dms.boot.user.service.IUserService;
+import dms.boot.user.service.userService.IUserService;
 
 public class AuthenticationInterceptor implements HandlerInterceptor {
 	@Autowired

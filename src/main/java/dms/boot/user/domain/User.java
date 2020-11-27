@@ -4,10 +4,19 @@ public class User {
     private String userId;
     private String username;
     private String password;
+    private Integer identity;
     
+
 	@Override
 	public String toString() {
-		return "User [userId=" + userId + ", username=" + username + ", password=" + password + "]";
+		return "User [userId=" + userId + ", username=" + username + ", password=" + password + ", identity=" + identity
+				+ "]";
+	}
+	public Integer getIdentity() {
+		return identity;
+	}
+	public void setIdentity(Integer identity) {
+		this.identity = identity;
 	}
 	public String getUserId() {
 		return userId;
