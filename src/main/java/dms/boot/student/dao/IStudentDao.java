@@ -16,7 +16,7 @@ public interface IStudentDao {
 	 * 	 分页学生列表
 	 * @return
 	 */
-	@Select("SELECT id, name, CASE gender WHEN 0 THEN '男' WHEN 1 THEN '女' END AS gender, birthday, address, phone, studentId, college, profession, classes FROM student ORDER BY id LIMIT #{leftLimit}, #{rightLimit}")
+	@Select("SELECT s.id, s.name, CASE s.gender WHEN 0 THEN '男' WHEN 1 THEN '女' END AS gender, s.birthday, s.address, s.phone, s.studentId, s.college, s.profession, s.classes, d.dormitory_num, sd.bed_num FROM student s LEFT JOIN stu_dormitory sd ON s.studentId = sd.studentId LEFT JOIN dormitory d ON sd.dor_id = d.id ORDER BY id LIMIT #{leftLimit}, #{rightLimit}")
 	public List<Student> queryStudentList(Integer leftLimit, Integer rightLimit);
 	
 	/**
@@ -63,6 +63,6 @@ public interface IStudentDao {
 	 * @param id
 	 * @return
 	 */
-	@Select("SELECT * FROM student WHERE id = #{id}")
+	@Select("SELECT s.*, d.dormitory_num, sd.bed_num FROM student s LEFT JOIN stu_dormitory sd ON s.studentId = sd.studentId LEFT JOIN dormitory d ON sd.dor_id = d.id WHERE s.id=#{id}")
 	public Student queryStudentById(Integer id);
 }

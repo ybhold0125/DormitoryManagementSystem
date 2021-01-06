@@ -23,8 +23,8 @@ public interface IUserDao {
 	 * @param username
 	 * @return
 	 */
-	@Select("SELECT * FROM user WHERE username=#{username}")
-	public User queryUserByUsername(String username);
+	@Select("SELECT * FROM user WHERE username=#{username} AND identity=#{identity}")
+	public User queryUserByUsernameWithIdentity(String username, int identity);
 	
 	/**
 	 * 	插入用户

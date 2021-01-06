@@ -25,7 +25,7 @@ public class UserServiceImpl implements IUserService {
 	@Override
 	public Map<String, Object> queryUserByUsername(User user) {
 		Map<String, Object> map = new HashMap<String, Object>();
-		User userInfo = iUserDao.queryUserByUsername(user.getUsername());
+		User userInfo = iUserDao.queryUserByUsernameWithIdentity(user.getUsername(), user.getIdentity());
 		if(userInfo == null || !userInfo.getPassword().equals(user.getPassword())) {
 			map.put("status", "false");
 			map.put("msg", "登录失败，账号或密码不存在");
@@ -38,7 +38,4 @@ public class UserServiceImpl implements IUserService {
 		map.put("user", userInfo);
 		return map;
 	}
-	
-	
-
 }
