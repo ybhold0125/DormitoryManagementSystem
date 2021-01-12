@@ -1,10 +1,10 @@
 package dms.boot.dormitory.domain;
 
 public class StuDormitory {
-    private int id;
+    private Integer id;
     private String studentId;
-    private int dorId;
-    private int bedNum;
+    private Integer dorId;
+    private Integer bedNum;
 
     public int getId() {
         return id;

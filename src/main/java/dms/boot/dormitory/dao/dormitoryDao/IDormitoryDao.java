@@ -1,13 +1,15 @@
 package dms.boot.dormitory.dao.dormitoryDao;
 
 import dms.boot.dormitory.domain.Dormitory;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
 @Mapper
 public interface IDormitoryDao {
+    @Insert("INSERT INTO dormitory(id, dormitory_num, bed, people_num) VALUES(NULL, #{dormitoryNum}, #{bed}, #{peopleNum})")
+    int saveDormitory(Dormitory dormitory);
     /**
      *  查询宿舍信息
      * @return 宿舍信息List
@@ -29,4 +31,17 @@ public interface IDormitoryDao {
      */
     @Select("SELECT * FROM dormitory WHERE dormitory_num=#{dorNum}")
     Dormitory queryDormitoryByDorNum(String dorNum);
+
+    @Update("UPDATE dormitory SET dormitory_num=#{dormitoryNum}, bed=#{bed}, people_num=#{peopleNum} WHERE id=#{id}")
+    int updateDormitory(Dormitory dormitory);
+
+    @DeleteProvider(type = SqlProvider.class, method = "deleteById")
+    int bitchDeleteDormitory(String[] ids);
+
+    public static class SqlProvider {
+        public static String deleteById(String[] ids) {
+            String bitchId = StringUtils.join(ids, ",");
+            return "DELETE FROM dormitory WHERE id IN (" + bitchId + ")";
+        }
+    }
 }

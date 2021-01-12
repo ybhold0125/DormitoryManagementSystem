@@ -1,10 +1,10 @@
 package dms.boot.dormitory.domain;
 
 public class Dormitory {
-    private int id;
+    private Integer id;
     private String dormitoryNum;
-    private int bed;
-    private int peopleNum;
+    private Integer bed;
+    private Integer peopleNum;
 
     public int getId() {
         return id;

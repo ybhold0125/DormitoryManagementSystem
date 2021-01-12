@@ -12,7 +12,7 @@ public class Student {
     private String profession;
     private String classes;
     private String dormitoryNum;
-    private int bedNum;
+    private Integer bedNum;
 
     public Integer getId() {
         return id;
