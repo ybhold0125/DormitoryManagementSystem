@@ -16,9 +16,9 @@ public class DormitoryController {
     private IDormitoryService iDormitoryService;
 
     @JwtToken
-    @PostMapping("/addDormitory")
-    public Map<String, Object> addDormitory(Dormitory dormitory){
-        return  null;
+    @PostMapping("/saveDormitory")
+    public Map<String, Object> saveDormitory(@RequestBody Dormitory dormitory){
+        return  iDormitoryService.saveDormitory(dormitory);
     }
 
     @JwtToken
@@ -34,8 +34,14 @@ public class DormitoryController {
     }
 
     @JwtToken
+    @PostMapping("/queryDormitory")
+    public Map<String, Object> queryDormitory(int id) {
+        return iDormitoryService.queryDormitory(id);
+    }
+
+    @JwtToken
     @PostMapping("/updateDormitory")
-    public Map<String, Object> updateDormitoryInfo(Dormitory dormitory){
-        return  null;
+    public Map<String, Object> updateDormitoryInfo(@RequestBody Dormitory dormitory){
+        return  iDormitoryService.updateDormitory(dormitory);
     }
 }

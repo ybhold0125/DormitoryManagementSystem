@@ -3,6 +3,7 @@ package dms.boot.dormitory.Service.impl;
 import dms.boot.dormitory.Service.IDormitoryService;
 import dms.boot.dormitory.dao.dormitoryDao.IDormitoryDao;
 import dms.boot.dormitory.domain.Dormitory;
+import dms.boot.student.domain.Student;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
@@ -19,8 +20,14 @@ public class DormitoryServiceImpl implements IDormitoryService {
     }
 
     @Override
-    public Map<String, Object> saveDormitoryList(Dormitory dormitory) {
+    public Map<String, Object> saveDormitory(Dormitory dormitory) {
         Map<String, Object> map = new HashMap<>();
+        int countOfDormitory = iDormitoryDao.queryDormitoryByDormitoryNum(dormitory.getDormitoryNum());
+        if(countOfDormitory > 0){
+            map.put("status", "false");
+            map.put("msg", "宿舍号已存在，请重新输入");
+            return map;
+        }
         int i = iDormitoryDao.saveDormitory(dormitory);
         if (i > 0) {
             map.put("status", "true");
@@ -49,6 +56,21 @@ public class DormitoryServiceImpl implements IDormitoryService {
         int total = iDormitoryDao.queryDormitoryCount();
         map.put("res", dormitoryInfo);
         map.put("total", total);
+        return map;
+    }
+
+    @Override
+    public Map<String, Object> queryDormitory(int id) {
+        Map<String, Object> map = new HashMap<>();
+        try {
+            Dormitory dormitory = iDormitoryDao.queryDormitoryById(id);
+            map.put("status", "true");
+            map.put("data", dormitory);
+        }catch (Exception e) {
+            e.printStackTrace();
+            map.put("status", "false");
+            map.put("msg", e.getMessage());
+        }
         return map;
     }
 

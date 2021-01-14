@@ -10,6 +10,19 @@ import java.util.List;
 public interface IDormitoryDao {
     @Insert("INSERT INTO dormitory(id, dormitory_num, bed, people_num) VALUES(NULL, #{dormitoryNum}, #{bed}, #{peopleNum})")
     int saveDormitory(Dormitory dormitory);
+
+    @DeleteProvider(type = SqlProvider.class, method = "deleteById")
+    int bitchDeleteDormitory(String[] ids);
+
+    @Update("UPDATE dormitory SET dormitory_num=#{dormitoryNum}, bed=#{bed}, people_num=#{peopleNum} WHERE id=#{id}")
+    int updateDormitory(Dormitory dormitory);
+
+    @Select("SELECT * FROM dormitory WHERE id=#{id}")
+    Dormitory queryDormitoryById(int id);
+
+    @Select("SELECT COUNT(1) FROM dormitory WHERE dormitory_num=#{dormitoryNum}")
+    int queryDormitoryByDormitoryNum(String dormitoryNum);
+
     /**
      *  查询宿舍信息
      * @return 宿舍信息List
@@ -31,12 +44,6 @@ public interface IDormitoryDao {
      */
     @Select("SELECT * FROM dormitory WHERE dormitory_num=#{dorNum}")
     Dormitory queryDormitoryByDorNum(String dorNum);
-
-    @Update("UPDATE dormitory SET dormitory_num=#{dormitoryNum}, bed=#{bed}, people_num=#{peopleNum} WHERE id=#{id}")
-    int updateDormitory(Dormitory dormitory);
-
-    @DeleteProvider(type = SqlProvider.class, method = "deleteById")
-    int bitchDeleteDormitory(String[] ids);
 
     public static class SqlProvider {
         public static String deleteById(String[] ids) {
